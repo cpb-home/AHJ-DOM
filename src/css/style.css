@@ -1,0 +1,25 @@
+body {
+  background-color: darkkhaki;
+}
+
+.board-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 415px;
+}
+
+.board {
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.cell {
+  background-color: lightgreen;
+  width: 100px;
+  height: 100px;
+}
