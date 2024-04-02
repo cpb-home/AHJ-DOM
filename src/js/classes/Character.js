@@ -3,6 +3,10 @@ export default class Character {
     this._position;
   }
 
+  get position() {
+    return this._position;
+  }
+
   set position(newPosition) {
     this._position = newPosition;
   }

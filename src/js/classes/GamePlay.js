@@ -4,6 +4,7 @@ export default class GamePlay {
     this.container = null;
     this.boardEl = null;
     this.cells = [];
+    this.cellClickListeners = [];
   }
 
 
@@ -11,6 +12,7 @@ export default class GamePlay {
     this.checkBinding();
 
     this.container.innerHTML = `
+      <div class="score">Счёт игры: <span>0</span></div>
       <div class="board-container">
         <div data-id="board" class="board"></div>
       </div>
@@ -47,7 +49,7 @@ export default class GamePlay {
       }
     }
 
-    
+    setTimeout(() => this.redrawPosition(char, boardSize), 3000);
   }
 
   bindToDOM(container) {
@@ -57,5 +59,13 @@ export default class GamePlay {
     this.container = container;
   }
 
+  onCellClick(event) {
+    const index = event.currentTarget.dataset.number;
+    this.cellClickListeners.forEach(o => o.call(null, index));
+  }
+
+  addCellClickListener(callback) {
+    this.cellClickListeners.push(callback);
+  }
 
 }
