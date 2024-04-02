@@ -5,6 +5,7 @@ export default class GamePlay {
     this.boardEl = null;
     this.cells = [];
     this.cellClickListeners = [];
+    this.timoutId;
   }
 
 
@@ -49,7 +50,10 @@ export default class GamePlay {
       }
     }
 
-    setTimeout(() => this.redrawPosition(char, boardSize), 3000);
+    this.timoutId = setTimeout(() => {
+      clearTimeout(this.timoutId);
+      this.redrawPosition(char, boardSize);
+    }, 3000);
   }
 
   bindToDOM(container) {
@@ -60,6 +64,7 @@ export default class GamePlay {
   }
 
   onCellClick(event) {
+    clearTimeout(this.timoutId);
     const index = event.currentTarget.dataset.number;
     this.cellClickListeners.forEach(o => o.call(null, index));
   }
